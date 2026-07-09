@@ -53,6 +53,12 @@ Send one near-field protocol packet and wait for a complete protocol packet repl
 sudo ./ble_link_diag <mac> <service_uuid> <write_char_uuid> <notify_char_uuid> --packet '{"topic":"/sdttu/subdevice/realtime/get","body":{"messageId":"diag-1","timestamp":"2026-07-09 00:00:00","body":[]}}' 8000
 ```
 
+Trace every protocol frame and ACK terminal business frames manually:
+
+```bash
+sudo ./ble_link_diag <mac> <service_uuid> <write_char_uuid> <notify_char_uuid> --packet-trace '{"topic":"/sdttu/subdevice/realtime/get","body":{"messageId":"diag-1","timestamp":"2026-07-09 00:00:00","body":[]}}' 8000
+```
+
 Expected success indicators:
 
 ```text
@@ -69,6 +75,12 @@ ble_protocol_open ret=0
 ble_protocol_send_packet ret=0
 ble_protocol_receive_packet ret=0
 rx_payload text="..."
+```
+
+Trace mode prints each frame as:
+
+```text
+rx_frame C=0xC1 dir=1 prm=1 fun=1 pseq=1 fseq=0x80 idx=0 total=1 prot=0x10 data_len=...
 ```
 
 ## Notes
