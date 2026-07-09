@@ -1,0 +1,4 @@
+ble_link_diag
+*.o
+*.log
+build/
